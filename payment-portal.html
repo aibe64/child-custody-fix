@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    .payment-wrap {
+      /* border: 2px solid red; */
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+    }
+
+    .category-item {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 0.5rem;
+      padding-bottom: 100px;
+      padding-top: 50px;
+    }
+
+    .tab-container {
+      /* border: 2px solid red; */
+      display: flex;
+      justify-content: center;
+      column-gap: 5px;
+    }
+
+    .tab {
+      box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 0.5rem;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 10px 30px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .tab:hover {
+      background-color: rgba(5, 5, 40, 0.763);
+      color: #fff;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .card-image {
+      /* border: 1px solid red; */
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 30px;
+    }
+
+    .credit-card {
+      width: 300px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .logo-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .child-logo {
+      width: 200px;
+    }
+
+    .select {
+      display: flex;
+      justify-content: center;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: rgba(5, 5, 40, 0.763);
+    }
+
+    #cash-app-wrap {
+      /* border: 2px solid red; */
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      margin-top: 30px;
+      border-radius: 15px;
+      /* box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25); */
+    }
+
+    .qr-code {
+      width: 350px;
+    }
+
+    .form-contents {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+
+    }
+
+    /* This section contains payment portal styling */
+    .login {
+      /* border: 1px solid red; */
+      font-weight: 700;
+      font-size: 30px;
+      margin-top: 30px;
+    }
+
+    .new-cash-app {
+      font-size: 16px;
+      font-weight: 500;
+      padding-bottom: 30px;
+    }
+
+    .phone {
+      font-weight: 600;
+    }
+
+    .cash-input {
+      border: 1px solid rgba(5, 5, 40, 0.18);
+      background-color: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px;
+    }
+
+    #cash-contents {
+      /* border: 2px solid red; */
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .btn {
+      border: 1px solid rgba(5, 5, 40, 0.763);
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 7px 20px;
+      margin-bottom: 50px;
+    }
+
+    .btn:hover {
+      background-color: rgba(5, 5, 40, 0.763);
+      color: #fff;
+    }
+
+    .email-continue {
+      /* border: 1px solid red; */
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .paragraph-contents {
+      width: 500px;
+      margin: 0 auto;
+      padding-top: 40px;
+    }
+
+    .bank-wrap {
+      font-weight: 200;
+    }
+
+    #ach-contents {
+      border: 2px solid rgba(0, 0, 0, 0.078);
+      /* border: 20px solid red; */
+      margin: 30px 20px;
+      padding: 10px 10px;
+      font-size: 14px;
+    }
+
+    .ach-note {
+      /* border: 1px solid red; */
+      padding: 10px 20px;
+    }
+
+    .account-property {
+      /* border: 1px solid red; */
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .account-value{
+      /* border: 1px solid red; */
+      font-weight: 500;
+      font-size: 18px;
+      padding-left: 10px;
+    }
+   
+    .form-caption {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* // XX-SM (<251px) */
+    @media (max-width: 250.9px) {
+      .payment-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px;
+      }
+
+      .category-item {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding-bottom: 80px;
+        padding-top: 50px;
+      }
+
+      .tab-container {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        column-gap: 5px;
+      }
+
+      .tab {
+        box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 0.5rem;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 10px;
+        border-radius: 5px 5px 0 0;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .tab:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 0px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .card-image {
+        /* border: 1px solid red; */
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+      }
+
+      .credit-card {
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .card-contents {
+        /* border: 1px solid red; */
+        padding: 0px 10px;
+
+      }
+
+      .logo-image {
+        display: flex;
+        justify-content: center;
+      }
+
+      .child-logo {
+        width: 150px;
+      }
+
+      .select {
+        display: flex;
+        justify-content: center;
+      }
+
+      h2 {
+        /* border: 1px solid red; */
+        font-size: 14px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: rgba(5, 5, 40, 0.763);
+        text-align: center;
+      }
+
+      #cash-app-wrap {
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-top: 30px;
+        border-radius: 0px;
+      }
+
+      .form-contents {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+      }
+
+      .email-continue {
+        /* border: 1px solid red; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      /* This section contains payment portal styling */
+      .login {
+        /* border: 1px solid red; */
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .new-cash-app {
+        font-size: 16px;
+        font-weight: 500;
+        padding-bottom: 20px;
+      }
+
+      .phone {
+        font-weight: 600;
+      }
+
+      .cash-input {
+        /* border: 1px solid rgba(5, 5, 40, 0.763); */
+        background-color: #fff;
+        border-radius: 5px;
+        width: 100%;
+        padding: 7px 20px;
+      }
+
+      #cash-contents {
+        /* border: 2px solid red; */
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+
+      .qr-code {
+      width: 100%;
+    }
+
+      .btn {
+        border: 1px solid rgba(5, 5, 40, 0.763);
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 6px 12px;
+        margin-bottom: 10px;
+      }
+
+      .btn:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .paragraph-contents {
+        /* border: 1px solid red; */
+        width: 100%;
+        margin: 0;
+        padding-top: 40px;
+      }
+
+      .cash-app-footer {
+        width: 100%;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      .bank-wrap {
+        font-weight: 200;
+      }
+
+      #ach-contents {
+        /* border: 1px solid red; */
+        border: 2px solid rgba(0, 0, 0, 0.078);
+        margin: 0px 0px;
+        padding: 0px 10px;
+        font-size: 14px;
+      }
+
+      .account-property {
+      /* border: 1px solid red; */
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .account-value{
+      /* border: 1px solid red; */
+      font-weight: 500;
+      font-size: 18px;
+      padding-left: 10px;
+    }
+
+      .form-caption {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    /* // XX-SM */
+    @media (min-width: 251px) and (max-width: 350.9px) {
+      .payment-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px;
+      }
+
+      .category-item {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding-bottom: 80px;
+        padding-top: 50px;
+      }
+
+      .tab-container {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        column-gap: 5px;
+      }
+
+      .tab {
+        box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 0.5rem;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 10px;
+        border-radius: 5px 5px 0 0;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .tab:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 0px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .card-image {
+        /* border: 1px solid red; */
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+      }
+
+      .credit-card {
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .card-contents {
+        /* border: 1px solid red; */
+        padding: 0px 10px;
+
+      }
+
+      .logo-image {
+        display: flex;
+        justify-content: center;
+      }
+
+      .child-logo {
+        width: 150px;
+      }
+
+      .select {
+        display: flex;
+        justify-content: center;
+      }
+
+      h2 {
+        /* border: 1px solid red; */
+        font-size: 14px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: rgba(5, 5, 40, 0.763);
+        text-align: center;
+      }
+
+      #cash-app-wrap {
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-top: 30px;
+        border-radius: 0px;
+      }
+
+      .form-contents {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+
+      }
+
+      .email-continue {
+        /* border: 1px solid red; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      /* This section contains payment portal styling */
+      .login {
+        /* border: 1px solid red; */
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .new-cash-app {
+        font-size: 16px;
+        font-weight: 500;
+        padding-bottom: 20px;
+      }
+
+      .phone {
+        font-weight: 600;
+      }
+
+      .cash-input {
+        /* border: 1px solid rgba(5, 5, 40, 0.763); */
+        background-color: #fff;
+        border-radius: 5px;
+        width: 100%;
+        padding: 7px 20px;
+      }
+
+      #cash-contents {
+        /* border: 2px solid red; */
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+
+      .qr-code {
+      width: 100%;
+    }
+
+      .btn {
+        border: 1px solid rgba(5, 5, 40, 0.763);
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 6px 12px;
+        margin-bottom: 10px;
+      }
+
+      .btn:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .paragraph-contents {
+        /* border: 1px solid red; */
+        width: 100%;
+        margin: 0;
+        padding-top: 40px;
+      }
+
+      .cash-app-footer {
+        width: 100%;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      .bank-wrap {
+        font-weight: 200;
+      }
+
+      #ach-contents {
+        /* border: 1px solid red; */
+        border: 2px solid rgba(0, 0, 0, 0.078);
+        margin: 0px 0px;
+        padding: 0px 10px;
+        font-size: 14px;
+      }
+
+      .form-caption {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+
+    /* // SM */
+    @media (min-width: 351px) and (max-width: 575.9px) {
+      .payment-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px;
+      }
+
+      .category-item {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding-bottom: 80px;
+        padding-top: 50px;
+      }
+
+      .tab-container {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        column-gap: 5px;
+      }
+
+      .tab {
+        box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 0.5rem;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 10px;
+        border-radius: 5px 5px 0 0;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .tab:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 0px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .card-image {
+        /* border: 1px solid red; */
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+      }
+
+      .credit-card {
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .card-contents {
+        /* border: 1px solid red; */
+        padding: 0px 10px;
+
+      }
+
+      .logo-image {
+        display: flex;
+        justify-content: center;
+      }
+
+      .child-logo {
+        width: 150px;
+      }
+
+      .select {
+        display: flex;
+        justify-content: center;
+      }
+
+      h2 {
+        /* border: 1px solid red; */
+        font-size: 14px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: rgba(5, 5, 40, 0.763);
+        text-align: center;
+      }
+
+      #cash-app-wrap {
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-top: 30px;
+        border-radius: 0px;
+      }
+
+      .form-contents {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+
+      }
+
+      .email-continue {
+        /* border: 1px solid red; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      /* This section contains payment portal styling */
+      .login {
+        /* border: 1px solid red; */
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .new-cash-app {
+        font-size: 16px;
+        font-weight: 500;
+        padding-bottom: 20px;
+      }
+
+      .phone {
+        font-weight: 600;
+      }
+
+      .cash-input {
+        /* border: 1px solid rgba(5, 5, 40, 0.763); */
+        background-color: #fff;
+        border-radius: 5px;
+        width: 100%;
+        padding: 7px 20px;
+      }
+
+      #cash-contents {
+        /* border: 2px solid red; */
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+
+      .qr-code {
+      width: 100%;
+    }
+
+      .btn {
+        border: 1px solid rgba(5, 5, 40, 0.763);
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 6px 12px;
+        margin-bottom: 10px;
+      }
+
+      .btn:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .paragraph-contents {
+        /* border: 1px solid red; */
+        width: 100%;
+        margin: 0;
+        padding-top: 40px;
+      }
+
+      .cash-app-footer {
+        width: 100%;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      .bank-wrap {
+        font-weight: 200;
+      }
+
+      #ach-contents {
+        /* border: 1px solid red; */
+        border: 2px solid rgba(0, 0, 0, 0.078);
+        margin: 0px 0px;
+        padding: 0px 10px;
+        font-size: 14px;
+      }
+
+      .form-caption {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+        /* // SM */
+        @media (min-width: 576px) and (max-width: 767.9px) {
+      .payment-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px;
+      }
+
+      .category-item {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding-bottom: 80px;
+        padding-top: 50px;
+      }
+
+      .tab-container {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        column-gap: 5px;
+      }
+
+      .tab {
+        box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 0.5rem;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 10px;
+        border-radius: 5px 5px 0 0;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .tab:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 0px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .card-image {
+        /* border: 1px solid red; */
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+      }
+
+      .credit-card {
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .card-contents {
+        /* border: 1px solid red; */
+        padding: 0px 10px;
+
+      }
+
+      .logo-image {
+        display: flex;
+        justify-content: center;
+      }
+
+      .child-logo {
+        width: 150px;
+      }
+
+      .select {
+        display: flex;
+        justify-content: center;
+      }
+
+      h2 {
+        /* border: 1px solid red; */
+        font-size: 14px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: rgba(5, 5, 40, 0.763);
+        text-align: center;
+      }
+
+      #cash-app-wrap {
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-top: 30px;
+        border-radius: 0px;
+      }
+
+      .form-contents {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+
+      }
+
+      .email-continue {
+        /* border: 1px solid red; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      /* This section contains payment portal styling */
+      .login {
+        /* border: 1px solid red; */
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .new-cash-app {
+        font-size: 16px;
+        font-weight: 500;
+        padding-bottom: 20px;
+      }
+
+      .phone {
+        font-weight: 600;
+      }
+
+      .cash-input {
+        /* border: 1px solid rgba(5, 5, 40, 0.763); */
+        background-color: #fff;
+        border-radius: 5px;
+        width: 100%;
+        padding: 7px 20px;
+      }
+
+      #cash-contents {
+        /* border: 2px solid red; */
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+
+      .qr-code {
+      width: 450px;
+    }
+
+      .btn {
+        border: 1px solid rgba(5, 5, 40, 0.763);
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 6px 12px;
+        margin-bottom: 10px;
+      }
+
+      .btn:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .paragraph-contents {
+        /* border: 1px solid red; */
+        width: 100%;
+        margin: 0;
+        padding-top: 40px;
+      }
+
+      .cash-app-footer {
+        width: 100%;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      .bank-wrap {
+        font-weight: 200;
+      }
+
+      #ach-contents {
+        /* border: 1px solid red; */
+        border: 2px solid rgba(0, 0, 0, 0.078);
+        margin: 0px 0px;
+        padding: 0px 10px;
+        font-size: 14px;
+      }
+
+      .form-caption {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    
+        /* // MD */
+        @media (min-width: 768px) and (max-width: 991.9px) {
+      .payment-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px;
+      }
+
+      .category-item {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding-bottom: 80px;
+        padding-top: 50px;
+      }
+
+      .tab-container {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        column-gap: 5px;
+      }
+
+      .tab {
+        box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 0.5rem;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 10px;
+        border-radius: 5px 5px 0 0;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .tab:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 0px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .card-image {
+        /* border: 1px solid red; */
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+      }
+
+      .credit-card {
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .card-contents {
+        /* border: 1px solid red; */
+        padding: 0px 10px;
+
+      }
+
+      .logo-image {
+        display: flex;
+        justify-content: center;
+      }
+
+      .child-logo {
+        width: 150px;
+      }
+
+      .select {
+        display: flex;
+        justify-content: center;
+      }
+
+      h2 {
+        /* border: 1px solid red; */
+        font-size: 14px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: rgba(5, 5, 40, 0.763);
+        text-align: center;
+      }
+
+      #cash-app-wrap {
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-top: 30px;
+        border-radius: 0px;
+      }
+
+      .form-contents {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+
+      }
+
+      .email-continue {
+        /* border: 1px solid red; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      /* This section contains payment portal styling */
+      .login {
+        /* border: 1px solid red; */
+        font-weight: 700;
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .new-cash-app {
+        font-size: 16px;
+        font-weight: 500;
+        padding-bottom: 20px;
+      }
+
+      .phone {
+        font-weight: 600;
+      }
+
+      .cash-input {
+        /* border: 1px solid rgba(5, 5, 40, 0.763); */
+        background-color: #fff;
+        border-radius: 5px;
+        width: 100%;
+        padding: 7px 20px;
+      }
+
+      #cash-contents {
+        /* border: 2px solid red; */
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+/* 
+      .qr-code {
+      width: 100%;
+    } */
+
+      .btn {
+        border: 1px solid rgba(5, 5, 40, 0.763);
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 6px 12px;
+        margin-bottom: 10px;
+      }
+
+      .btn:hover {
+        background-color: rgba(5, 5, 40, 0.763);
+        color: #fff;
+      }
+
+      .paragraph-contents {
+        /* border: 1px solid red; */
+        width: 100%;
+        margin: 0;
+        padding-top: 40px;
+      }
+
+      .cash-app-footer {
+        width: 100%;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      .bank-wrap {
+        font-weight: 200;
+      }
+
+      #ach-contents {
+        /* border: 1px solid red; */
+        border: 2px solid rgba(0, 0, 0, 0.078);
+        margin: 0px 0px;
+        padding: 0px 10px;
+        font-size: 14px;
+      }
+
+      .form-caption {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    /* // LG */
+/* @media (min-width: 992px) and (max-width: 1200.9px) {} */
+
+/* // XL */
+/* @media (min-width: 1201px) and (max-width: 1499.9px) {} */
+
+/* // XXL */
+@media (min-width: 1500px) {
+  .payment-wrap {
+      /* border: 2px solid red; */
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+    }
+
+    .category-item {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 0.5rem;
+      padding-bottom: 100px;
+      padding-top: 50px;
+    }
+
+    .tab-container {
+      /* border: 2px solid red; */
+      display: flex;
+      justify-content: center;
+      column-gap: 5px;
+    }
+
+    .tab {
+      box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 0.5rem;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 10px 30px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .tab:hover {
+      background-color: rgba(5, 5, 40, 0.763);
+      color: #fff;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .card-image {
+      /* border: 1px solid red; */
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 30px;
+    }
+
+    .credit-card {
+      width: 300px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .logo-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .child-logo {
+      width: 200px;
+    }
+
+    .select {
+      display: flex;
+      justify-content: center;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: rgba(5, 5, 40, 0.763);
+    }
+
+    #cash-app-wrap {
+      /* border: 2px solid red; */
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      margin-top: 30px;
+      border-radius: 15px;
+      /* box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.25); */
+    }
+
+    .qr-code {
+      width: 450px;
+    }
+
+    .form-contents {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+
+    }
+
+    /* This section contains payment portal styling */
+    .login {
+      /* border: 1px solid red; */
+      font-weight: 700;
+      font-size: 30px;
+      margin-top: 30px;
+    }
+
+    .new-cash-app {
+      font-size: 16px;
+      font-weight: 500;
+      padding-bottom: 30px;
+    }
+
+    .phone {
+      font-weight: 600;
+    }
+
+    .cash-input {
+      border: 1px solid rgba(5, 5, 40, 0.18);
+      background-color: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px;
+    }
+
+    #cash-contents {
+      /* border: 2px solid red; */
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .btn {
+      border: 1px solid rgba(5, 5, 40, 0.763);
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 7px 20px;
+      margin-bottom: 50px;
+    }
+
+    .btn:hover {
+      background-color: rgba(5, 5, 40, 0.763);
+      color: #fff;
+    }
+
+    .email-continue {
+      /* border: 1px solid red; */
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .paragraph-contents {
+      width: 500px;
+      margin: 0 auto;
+      padding-top: 40px;
+    }
+
+    .bank-wrap {
+      font-weight: 200;
+    }
+
+    #ach-contents {
+      border: 2px solid rgba(0, 0, 0, 0.078);
+      margin: 30px 20px;
+      padding: 20px 10px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .account-property {
+      /* border: 1px solid red; */
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .account-value{
+      /* border: 1px solid red; */
+      font-weight: 500;
+      font-size: 18px;
+      padding-left: 10px;
+    }
+   
+    .form-caption {
+      font-size: 16px;
+      font-weight: 600;
+    }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="payment-wrap">
+    <div class="category-item">
+      <div class="logo-image">
+        <img class="child-logo" src="Image/logo-ChildSupport.jpeg" alt="">
+      </div>
+      <div class="select">
+        <h2>CLICK THE OPTIONS BELOW TO SELECT YOUR PAYMENT METHOD</h2>
+      </div>
+      <div class="tab-container">
+        <div class="tab first" onclick="openTab('tab1')">Card Payment</div>
+        <div class="tab" onclick="openTab('tab2')">ACH Payment</div>
+        <div class="tab" onclick="openTab('tab3')">Cash App</div>
+      </div>
+
+      <!-- Payment with Cards -->
+      <div id="tab1" class="tab-content">
+        <div class="card-image">
+          <img class="credit-card" src="Image/OIP.jpeg" alt="card">
+        </div>
+
+        <form id="myForm"  class="row g-3 card-contents">
+          <div class="col-md-12">
+            <label for="text" class="form-label">Payment Amount</label>
+            <input type="text" class="form-control" id="text" required>
+          </div>
+
+          <div class="col-md-12">
+            <label for="text" class="form-label">Card Name</label>
+            <input type="text" class="form-control" id="text" required>
+          </div>
+
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 6363 8383 8263" required>
+          </div>
+
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Exp Date </label>
+            <input type="date" class="form-control" id="inputAddress" placeholder="1234 6363 8383 8263" required>
+          </div>
+
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">Cvv </label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="" required>
+          </div>
+
+          <div class="col-md-12">
+            <label for="text" class="form-label">Payment Description</label>
+            <input type="text" class="form-control" id="text" required>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check In
+              </label>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn ">Submit</button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- bank transfer form -->
+      <div id="tab2" class="tab-content">
+        <form id="ach-contents" class="row g-3">
+          <div class="bank-wrap"></div>
+
+          <p>
+            <span class="account-property">Account Name: </span> <span class="account-value">Child Custody Fix</span>
+          </p>
+          <p>
+            <span class="account-property">Account Number: </span> <span class="account-value">4730794699</span>
+          </p>
+
+          <p>
+            <span class="account-property">ACH/Routine:  </span> <span class="account-value"> 071921891</span>
+          </p>
+
+          <p>
+            <span class="account-property">Bank: </span> <span class="account-value">PNC</span>
+          </p>
+        </form>
+        <div class="ach-note">
+          <p>
+            <span> <b>Note:</b> &nbsp; </span> All payment receipts and details should be forwarded appropriately
+            for proper records and documentation.
+          </p>
+        </div>
+      </div>
+      <!-- Cash App -->
+      <div id="tab3" class="tab-content">
+        <form id="cash-app-wrap" class="row g-3">
+        
+            <div class="cash-input">
+            <img class="qr-code" src="Image/Qr.jpeg" alt="qr-code">
+            </div>
+       
+        </form>
+
+        <div class="paragraph-contents">
+          <p class="cash-app-footer">
+            Banking services provided by Cash App's bank partners. Debit cards issued by formerly known as Square, Inc.
+            Bitcoin services by Block, Inc. Cash App Investing does not trade bitcoin and Block, Inc. is not a member of
+            FINRA or SIPC. Tax filing services by Cash App Taxes, Inc.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script>
+    function openTab(tabName) {
+      var i, tabContent;
+      tabContent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "block";
+    };
+
+  </script>
+</body>
+
+</html>
