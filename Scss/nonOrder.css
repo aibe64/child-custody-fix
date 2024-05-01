@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form .my-form {
+  border: 1px solid rgba(0, 0, 0, 0.2588235294);
+  min-height: 500px;
+  padding: 20px;
+}
+form .my-form label {
+  font-weight: 700;
+  margin-top: 25px;
+}
+form .my-form .mdi--multiplication {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='red' d='M11 3h2v7.27l6.29-3.63l1 1.73L14 12l6.3 3.64l-1 1.73l-6.3-3.65V21h-2v-7.27l-6.31 3.63l-1-1.73L10 12L3.72 8.36l1-1.73L11 10.26z'/%3E%3C/svg%3E");
+}
+form .my-form .form-name {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  margin-top: 30px;
+  line-height: 18px;
+}
+form .my-form > .form-caption {
+  border-bottom: 1px solid #000;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+}
+form .my-form .absent-parent {
+  border-bottom: 1px solid #000;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+}/*# sourceMappingURL=nonOrder.css.map */
