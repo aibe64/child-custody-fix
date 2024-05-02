@@ -45,4 +45,21 @@ form .my-form .absent-parent {
   line-height: 18px;
   margin-bottom: 30px;
   margin-top: 15px;
+}
+form .my-form .underline-label {
+  border-bottom: 1px solid #000;
+  line-height: 18px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+form .my-form textarea {
+  width: 100%;
+}
+form .my-form .paragraph {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+form .my-form .btn {
+  padding: 10px 15px;
 }/*# sourceMappingURL=nonOrder.css.map */

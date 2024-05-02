@@ -51,5 +51,26 @@ form {
       margin-bottom: 30px;
       margin-top: 15px;
     }
+
+    .underline-label {
+      border-bottom: 1px solid #000;
+      line-height: 18px;
+      width: fit-content;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    .paragraph {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .btn {
+      // border: 5px solid red;
+      padding: 10px 15px;
+    }
   }
 }
